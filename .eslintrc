@@ -1,0 +1,17 @@
+{
+    "plugins": [
+        "react-redux",
+        "prettier"
+    ],
+    "extends": [
+        "plugin:react-redux/recommended",
+        "react-app",
+        "prettier"
+    ],
+    "rules": {
+        "jsx-quotes": [
+            1,
+            "prefer-double"
+        ]
+    }
+}

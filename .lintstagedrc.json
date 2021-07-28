@@ -1,0 +1,6 @@
+{
+    "*.{js, jsx, scss}": [
+      "prettier --write",
+      "git add"
+    ]
+}
