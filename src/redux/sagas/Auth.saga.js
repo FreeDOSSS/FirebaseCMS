@@ -2,7 +2,7 @@ import { all, call, put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga/effects';
 
 import { AuthTypes } from './../types';
-import * as FirebaseService from './../../services/firebase';
+import { FireAuth } from '../../services/firebase';
 import { notification } from 'antd';
 import { LOGOUT_FAILURE, LOGOUT_SUCCESS } from '../types/Auth.types';
 
@@ -12,7 +12,7 @@ function* signUp() {
 		function* ({ payload, callback }) {
 			try {
 				const user = yield call(
-					FirebaseService.signUp,
+					FireAuth.signUp,
 					payload.email,
 					payload.password
 				);
@@ -36,7 +36,7 @@ function* signIn() {
 		function* ({ payload, callback }) {
 			try {
 				const user = yield call(
-					FirebaseService.signIn,
+					FireAuth.signIn,
 					payload.email,
 					payload.password
 				);
@@ -57,7 +57,7 @@ function* signIn() {
 function* logOut() {
 	yield takeLatest(AuthTypes.LOGOUT_REQUEST, function* () {
 		try {
-			yield call(FirebaseService.logout);
+			yield call(FireAuth.logout);
 			yield put({ type: LOGOUT_SUCCESS });
 		} catch (err) {
 			yield put({ type: LOGOUT_FAILURE });

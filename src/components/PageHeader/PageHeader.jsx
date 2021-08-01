@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getUser } from '../../redux/selectors/Auth.selector';
 import * as style from './PageHeader.module.scss';
-import { LogoutOutlined } from '@ant-design/icons';
+import { LogoutOutlined, PlusOutlined } from '@ant-design/icons';
 import { logOutRequest } from '../../redux/actions/Auth.actions';
+import { Link } from 'react-router-dom';
+import router from '../../App/router';
 
 const { Header } = Layout;
 
@@ -26,6 +28,10 @@ export function PageHeader(props) {
 			</div>
 
 			<div className={style['auth--box']}>
+				<Link to={router.productsCreate.path} className={style.add_product_btn}>
+					Add product <PlusOutlined />
+				</Link>
+
 				<Button
 					onClick={onLogout}
 					className={style.logout_btn}

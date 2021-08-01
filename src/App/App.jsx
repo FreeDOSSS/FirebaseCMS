@@ -6,7 +6,6 @@ import './App.module.scss';
 import store from '../redux';
 import router from './router';
 import './../style/theme.scss';
-import Products from '../pages/Products';
 import { Layout } from 'antd';
 import { PageHeader } from '../components';
 
@@ -29,7 +28,16 @@ function App() {
 								<PageHeader />
 								<Content style={{ padding: '15px' }}>
 									<Switch>
-										<Route path="/products" component={Products} exact />
+										<Route
+											path={router.productsCreate.path}
+											component={router.productsCreate.component}
+											exact
+										/>
+										<Route
+											path={router.products.path}
+											component={router.products.component}
+											exact
+										/>
 									</Switch>
 								</Content>
 							</Layout>
