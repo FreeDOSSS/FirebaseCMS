@@ -1,0 +1,16 @@
+* {
+}
+
+body {
+  background-color: #dadada;
+}
+
+.ant {
+  ant-avatar ant-avatar-circle
+  &-layout {
+    &-header {
+      background: #003261;
+    }
+  }
+
+}

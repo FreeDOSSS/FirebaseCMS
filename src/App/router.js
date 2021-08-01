@@ -1,15 +1,19 @@
+import Login from './../pages/Login';
+import SignUp from './../pages/SignUp';
+import Products from '../pages/Products';
+
 const router = {
 	login: {
-		component: '',
-		path: '',
+		component: Login,
+		path: '/login',
 	},
 	signup: {
-		component: '',
-		path: '',
+		component: SignUp,
+		path: '/sign-up',
 	},
 	products: {
-		component: '',
-		path: '',
+		component: Products,
+		path: '/products',
 	},
 	productsEdit: {
 		component: '',
@@ -20,3 +24,5 @@ const router = {
 		path: '',
 	},
 };
+
+export default router;

@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.user {
+  &--box {
+    display: flex;
+    align-items: center;
+  }
+
+  &__email {
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__avatar {
+    background: tomato;
+    margin-right: 10px;
+  }
+}
+
+.auth {
+  &--box {
+  }
+}
+
+.logout_btn {
+  border: none;
+  background: none;
+
+  color: white;
+
+  &:hover, &:focus {
+    border: none;
+    background: none;
+    color: tomato;
+  }
+}
