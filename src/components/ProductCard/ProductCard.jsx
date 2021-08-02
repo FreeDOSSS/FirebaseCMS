@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as style from './ProductCard.module.scss';
 import { Card, Divider, Image } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { FireBucket } from '../../services/firebase';
+import { FireBucket, FireStore } from '../../services/firebase';
 import { Statistic } from 'antd/es';
 import moment from 'moment';
 
@@ -19,7 +19,14 @@ export function ProductCard({ product }) {
 	return (
 		<Card
 			cover={<Image src={imgSrc} />}
-			actions={[<EditOutlined />, <DeleteOutlined />]}
+			actions={[
+				<EditOutlined />,
+				<DeleteOutlined
+					onClick={() => {
+						FireStore.deleteProduct(product.id);
+					}}
+				/>,
+			]}
 		>
 			<Meta title={product.title} description={product.description} />
 			<Divider />

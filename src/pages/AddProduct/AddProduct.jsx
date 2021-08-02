@@ -9,7 +9,7 @@ function AddProduct({ history }) {
 	const uploadFile = (file) => FireBucket.uploadFile(file);
 
 	const onFinish = async (values) => {
-		await uploadFile(values.photo[0]);
+		await uploadFile(values.photo[0].originFileObj);
 
 		values.photo = `images/${values.photo[0].name}`;
 		let exp_data = values.expire_discount;
@@ -22,12 +22,12 @@ function AddProduct({ history }) {
 	};
 
 	return (
-		<>
+		<div style={{ maxWidth: '500px', margin: 'auto' }}>
 			<Title level={2} align={'center'}>
 				Create New Product
 			</Title>
 			<ProductForm onFinish={onFinish} />
-		</>
+		</div>
 	);
 }
 

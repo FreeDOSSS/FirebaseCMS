@@ -47,13 +47,20 @@ export class FireStore {
 	static createProduct(values) {
 		return db.collection('products').add(values);
 	}
+
+	static deleteProduct(id) {
+		return db.collection('products').doc(id).delete();
+	}
 }
 
 export class FireBucket {
 	static async uploadFile(file) {
-		return buckets.child(`images/${file.name}`).put(file, {
-			contentType: file.type,
-		});
+		return buckets
+			.child(`images/${file.name}`)
+			.put(file, {
+				contentType: file.type,
+			})
+			.then();
 	}
 
 	static async getImageLink(uri) {

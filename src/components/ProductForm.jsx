@@ -1,9 +1,9 @@
 import { Button, DatePicker, Form, Input, InputNumber, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import moment from 'moment';
 
-export function ProductForm(props) {
+export function ProductForm({ loading, ...props }) {
 	const disabledDate = useCallback(
 		(current) => current && current < moment().endOf('day'),
 		[]
@@ -16,8 +16,25 @@ export function ProductForm(props) {
 		return e && e.fileList;
 	};
 
+	const [form] = Form.useForm();
+	const [withDiscount, setWithDiscount] = useState(false);
+
+	useEffect(() => {
+		form.validateFields(['expire_discount']);
+	}, [withDiscount]);
+
 	return (
-		<Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} {...props}>
+		<Form
+			labelCol={{ span: 8 }}
+			wrapperCol={{ span: 16 }}
+			{...props}
+			onValuesChange={(valueChanged) => {
+				if (valueChanged.hasOwnProperty('discount')) {
+					setWithDiscount(!!valueChanged.discount);
+				}
+			}}
+			form={form}
+		>
 			<Form.Item
 				label="Title"
 				name="title"
@@ -87,7 +104,7 @@ export function ProductForm(props) {
 						type: 'date',
 					},
 					{
-						required: true,
+						required: withDiscount,
 						message: 'Expire discount is required',
 					},
 				]}
@@ -116,12 +133,13 @@ export function ProductForm(props) {
 						console.log('file', file);
 						return false;
 					}}
+					maxCount={1}
 				>
 					<Button icon={<UploadOutlined />}>Click to upload</Button>
 				</Upload>
 			</Form.Item>
-			<Form.Item>
-				<Button type="primary" htmlType="submit">
+			<Form.Item wrapperCol={{ offset: 8, span: 8 }}>
+				<Button type="primary" htmlType="submit" loading={props.loading}>
 					Submit
 				</Button>
 			</Form.Item>
