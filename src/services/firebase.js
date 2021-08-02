@@ -55,6 +55,10 @@ export class FireBucket {
 			contentType: file.type,
 		});
 	}
+
+	static async getImageLink(uri) {
+		return buckets.child(uri).getDownloadURL();
+	}
 }
 
 export class FireAuth {
@@ -67,17 +71,6 @@ export class FireAuth {
 		return firebaseController
 			.auth()
 			.signInWithEmailAndPassword(email, password);
-	}
-
-	/**
-	 * @param email {string}
-	 * @param password {string}
-	 * @returns {Promise<firebase.auth.UserCredential>}
-	 */
-	static signUp(email, password) {
-		return firebaseController
-			.auth()
-			.createUserWithEmailAndPassword(email, password);
 	}
 
 	/**
